@@ -43,7 +43,7 @@ session_start();
                 }
                 ?>
                 <div class="row">
-                    <h3>products, etc.</h3>
+                    <h3>Pokemons.</h3>
                 </div>
                 <div class="row">
                     <?php

@@ -54,7 +54,7 @@ try {
                         <a class="nav-link" href="..">home</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="./">product</a>
+                        <a class="nav-link" href="./">pokemon</a>
                     </li>
                 </ul>
             </div>
@@ -84,9 +84,9 @@ try {
                 }
                 ?>
                 <div class="row">
-                    <h3>product list</h3>
+                    <h3>Pokemon list</h3>
                 </div>
-                <table class="table table-striped table-hover" id="tablaProducto">
+                <table class="table table-striped table-hover" id="tablaPokemons">
                     <thead>
                         <tr>
                             <th>id</th>
@@ -123,7 +123,15 @@ try {
                                     <td><?= $fila['defense']; ?></td>
                                     
                                     <td><a href="show.php?id=<?= $fila['id'] ?>">view</a></td>
-                                    
+                                         
+                                    <?php
+                                    if(isset($_SESSION['user'])) {
+                                        ?>
+                                        <td><a href="delete.php?id=<?= $fila['id'] ?>">delete</a></td>
+                                        <td><a href="edit.php?id=<?= $fila['id'] ?>">edit</a></td>
+                                        <?php
+                                    }
+                                    ?>
                                 </tr>
                                 <?php
                             }
@@ -134,7 +142,7 @@ try {
                     <?php
                     if(isset($_SESSION['user'])) {
                         ?>
-                        <a href="create.php" class="btn btn-success">add product</a>
+                        <a href="create.php" class="btn btn-success">add pokemon</a>
                         <?php
                     }
                     ?>

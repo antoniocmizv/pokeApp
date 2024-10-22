@@ -12,33 +12,28 @@ $user = $_SESSION['user'];
 
 try {
     $connection = new \PDO(
-      'mysql:host=localhost;dbname=productdatabase',
-      'productuser',
-      'productpassword',
+      'mysql:host=localhost;dbname=pokemons',
+      'root',
+      'Antonio131105',
       array(
         PDO::ATTR_PERSISTENT => true,
         PDO::MYSQL_ATTR_INIT_COMMAND => 'set names utf8')
     );
 } catch(PDOException $e) {
-    header('Location: ..');
+    header('Location:..');
     exit;
 }
 
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
 } else {
-    $url = '.?op=editproduct&result=noid';
+    $url = '.?op=editpokemon&result=noid';
     header('Location: ' . $url);
     exit;
 }
 
-if(($user === 'even' && $id % 2 != 0) ||
-    ($user === 'odd' && $id % 2 == 0)) {
-    header('Location: .?op=editproduct&result=evenodd');
-    exit;
-}
 
-$sql = 'select * from product where id = :id';
+$sql = 'select * from pokemon where id = :id';
 $sentence = $connection->prepare($sql);
 $parameters = ['id' => $id];
 foreach($parameters as $nombreParametro => $valorParametro) {
@@ -59,22 +54,58 @@ if($row == null) {
 }
 
 $name = '';
-$price = '';
+$type = '';
+$ability = '';
+$hp = '';
+$attack = '';
+$defense = '';
+
 if(isset($_SESSION['old']['name'])) {
     $name = $_SESSION['old']['name'];
     unset($_SESSION['old']['name']);
 }
-if(isset($_SESSION['old']['price'])) {
-    $price = $_SESSION['old']['price'];
-    unset($_SESSION['old']['price']);
+if(isset($_SESSION['old']['type'])) {
+    $type = $_SESSION['old']['type'];
+    unset($_SESSION['old']['type']);
 }
+if(isset($_SESSION['old']['ability'])) {
+    $ability = $_SESSION['old']['ability'];
+    unset($_SESSION['old']['ability']);
+}
+if(isset($_SESSION['old']['hp'])) {
+    $hp = $_SESSION['old']['hp'];
+    unset($_SESSION['old']['hp']);
+}
+if(isset($_SESSION['old']['attack'])) {
+    $attack = $_SESSION['old']['attack'];
+    unset($_SESSION['old']['attack']);
+}
+if(isset($_SESSION['old']['defense'])) {
+    $defense = $_SESSION['old']['defense'];
+    unset($_SESSION['old']['defense']);
+}
+
+
 $id = $row['id'];
 if($name == '') {
     $name = $row['name'];
 }
-if($price == '') {
-    $price = $row['price'];
+if($type == '') {
+    $type = $row['type'];
 }
+if($ability == '') {
+    $ability = $row['ability'];
+}
+if($hp == '') {
+    $hp = $row['hp'];
+}
+if($attack == '') {
+    $attack = $row['attack'];
+}
+if($defense == '') {
+    $defense = $row['defense'];
+}
+
 $connection = null;
 ?>
 <!doctype html>
@@ -96,7 +127,7 @@ $connection = null;
                         <a class="nav-link" href="..">home</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="./">product</a>
+                        <a class="nav-link" href="./">pokemons</a>
                     </li>
                 </ul>
             </div>
@@ -104,7 +135,7 @@ $connection = null;
         <main role="main">
             <div class="jumbotron">
                 <div class="container">
-                    <h4 class="display-4">products</h4>
+                    <h4 class="display-4">pokemonss</h4>
                 </div>
             </div>
             <div class="container">
@@ -128,13 +159,30 @@ $connection = null;
                 <div>
                     <form action="update.php" method="post">
                         <div class="form-group">
-                            <label for="name">product name</label>
-                            <input value="<?= $name ?>" required type="text" class="form-control" id="name" name="name" placeholder="product name">
+                            <label for="name">pokemons name</label>
+                            <input value="<?= $name ?>" required type="text" class="form-control" id="name" name="name" placeholder="pokemon name">
                         </div>
                         <div class="form-group">
-                            <label for="price">product price</label>
-                            <input value="<?= $price ?>" required type="number" step="0.001" class="form-control" id="price" name="price" placeholder="product price">
+                            <label for="type">pokemons type</label>
+                            <input value="<?= $type ?>" required type="text" class="form-control" id="type" name="type" placeholder="pokemon type">
                         </div>
+                        <div class="form-group">
+                            <label for="ability">pokemons ability</label>
+                            <input value="<?= $ability ?>" required type="text" class="form-control" id="ability" name="ability" placeholder="pokemon ability">
+                        </div>
+                        <div class="form-group">
+                            <label for="hp">pokemons ability</label>
+                            <input value="<?= $hp ?>" required type="text" class="form-control" id="hp" name="hp" placeholder="pokemon hp">
+                        </div>
+                        <div class="form-group">
+                            <label for="attack">pokemons attack</label>
+                            <input value="<?= $attack ?>" required type="text" class="form-control" id="attack" name="attack" placeholder="pokemon attack">
+                        </div>
+                        <div class="form-group">
+                            <label for="defense">pokemons defense</label>
+                            <input value="<?= $defense ?>" required type="text" class="form-control" id="defense" name="defense" placeholder="pokemon defense">
+                        </div>
+
                         <input type="hidden" name="id" value="<?= $id ?>" />
                         <button type="submit" class="btn btn-primary">edit</button>
                     </form>

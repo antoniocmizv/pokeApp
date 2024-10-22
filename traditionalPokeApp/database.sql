@@ -1,8 +1,8 @@
-create database productdatabase
+create database pokemons
     default character set utf8
     collate utf8_unicode_ci;
 
-use productdatabase;
+use pokemons;
 
 CREATE TABLE pokemon (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -14,11 +14,11 @@ CREATE TABLE pokemon (
   defense INT
 );
 
-create user productuser@localhost
-    identified by 'productpassword';
+create user pokeuser@localhost
+    identified by 'Pokepassword1234';
 
 grant all
-    on productdatabase.*
-    to productuser@localhost;
+    on pokemon.*
+    to pokeuser@localhost;
 
 flush privileges;
