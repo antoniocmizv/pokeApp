@@ -10,16 +10,19 @@ if(!isset($_SESSION['user'])) {
 }
 
 try {
-    $connection = new \PDO(
+    $connection = new PDO(
       'mysql:host=localhost;dbname=pokemons',
-      'root',
-      'Antonio131105',
+      'pokeuser',
+      'Pokepassword1234#',
+     
       array(
         PDO::ATTR_PERSISTENT => true,
         PDO::MYSQL_ATTR_INIT_COMMAND => 'set names utf8')
+        
     );
 } catch(PDOException $e) {
-    die('Connection failed: ' . $e->getMessage());
+    header('Location:..');
+    exit;
 }
 
 if (isset($_POST['id'], $_POST['name'], $_POST['type'], $_POST['ability'], $_POST['hp'], $_POST['attack'], $_POST['defense'])) {

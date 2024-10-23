@@ -11,13 +11,15 @@ if(!isset($_SESSION['user'])) {
 $user = $_SESSION['user'];
 
 try {
-    $connection = new \PDO(
+    $connection = new PDO(
       'mysql:host=localhost;dbname=pokemons',
-      'root',
-      'Antonio131105',
+      'pokeuser',
+      'Pokepassword1234#',
+     
       array(
         PDO::ATTR_PERSISTENT => true,
         PDO::MYSQL_ATTR_INIT_COMMAND => 'set names utf8')
+        
     );
 } catch(PDOException $e) {
     header('Location:..');

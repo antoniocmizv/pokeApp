@@ -15,7 +15,7 @@ CREATE TABLE pokemon (
 );
 
 create user pokeuser@localhost
-    identified by 'Pokepassword1234';
+    identified by 'Pokepassword1234#';
 
 grant all
     on pokemon.*
