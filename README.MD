@@ -51,8 +51,11 @@ PokeApp es una aplicación web desarrollada con Laravel que permite a los usuari
 Una vez que el servidor esté en funcionamiento, puedes acceder a la aplicación en `http://localhost:8000`.
 
 ## Diseño interfaz
-Aquí podemos encontrar la interfaz de la app donde veremos los pokemon listados y solo podemos editar o borrar si estamos logeados
+Aquí podemos encontrar la interfaz de la app donde veremos los pokemon listados y solo podemos editar o borrar si estamos logeados.
 ![alt text](image.png)
 
-Aquí el formulario de edición
+Aquí el formulario de edición.
 ![alt text](image-1.png)
+
+Si los campos fallan me llevan al mismo formulario con los datos antiguos y el error.
+![alt text](image-2.png)
