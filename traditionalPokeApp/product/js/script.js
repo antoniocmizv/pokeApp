@@ -1,6 +1,6 @@
 (function () {
 
-    let tabla = document.getElementById('tablaProducto');
+    let tabla = document.getElementById('tablaPokemons');
 
     if(tabla) {
         tabla.addEventListener('click', clickTable);
@@ -14,7 +14,7 @@
     }
 
     function confirmDelete(event) {
-        if(!confirm('Confirm delete?')) {
+        if(!confirm('¿Estás seguro de que deseas eliminar este Pokémon?')) {
             event.preventDefault();
         }
     }
